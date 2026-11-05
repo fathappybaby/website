@@ -1,0 +1,54 @@
+/* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-in;
+}
+
+p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+}
