@@ -8,14 +8,14 @@
  * Order in the array = order on the page (top-to-bottom, left-to-right).
  */
 const VIDEOS = [
-    { title: "Junk Haulers",                     youtubeId: "mEnn8HIKH_A", trailerUrl: "https://www.youtube.com/watch?v=6BDx9pTJbZ0" },
-    { title: "Dust and Reckoning",               youtubeId: "TeC0Sqw5HUQ", trailerUrl: "https://www.youtube.com/watch?v=CHEjWrB-SO4" },
-    { title: "Lord of the Undead Directors Cut", youtubeId: "wOD4a1AsMAw", trailerUrl: "https://www.youtube.com/watch?v=X4nUmIhjxzk" },
-    { title: "Ghost In Orion 9",                 youtubeId: "ULyuZ7eTPqA", trailerUrl: "https://www.youtube.com/watch?v=QTH0Lu-qfOY" },
-    { title: "Lost And Found",                   youtubeId: "yN339ushFe0", trailerUrl: "https://www.youtube.com/watch?v=zVykxSv9UXQ" },
-    { title: "Killing Dragons: A cookbook",      youtubeId: "L2UykahVvFo", trailerUrl: "https://www.youtube.com/watch?v=4gRHxJ_O7cY" },
-    { title: "Rubber Head",                      youtubeId: "nJDrCf0tXFk", trailerUrl: "https://www.youtube.com/watch?v=jLpdTSHSNsc" },
-    { title: "Unicorn Warrior",                  youtubeId: "NvP6vjMp8QA", trailerUrl: "https://www.youtube.com/watch?v=O2pujGARjnw" }
+    { title: "Junk Haulers",                     youtubeId: "mEnn8HIKH_A", trailerUrl: "https://youtu.be/6BDx9pTJbZ0" },
+    { title: "Dust and Reckoning",               youtubeId: "TeC0Sqw5HUQ", trailerUrl: "https://youtu.be/CHEjWrB-SO4" },
+    { title: "Lord of the Undead Directors Cut", youtubeId: "wOD4a1AsMAw", trailerUrl: "https://youtu.be/X4nUmIhjxzk" },
+    { title: "Ghost In Orion 9",                 youtubeId: "ULyuZ7eTPqA", trailerUrl: "https://youtu.be/QTH0Lu-qfOY" },
+    { title: "Lost And Found",                   youtubeId: "yN339ushFe0", trailerUrl: "https://youtu.be/zVykxSv9UXQ" },
+    { title: "Killing Dragons: A cookbook",      youtubeId: "L2UykahVvFo", trailerUrl: "https://youtu.be/4gRHxJ_O7cY" },
+    { title: "Rubber Head",                      youtubeId: "nJDrCf0tXFk", trailerUrl: "https://youtu.be/jLpdTSHSNsc" },
+    { title: "Unicorn Warrior",                  youtubeId: "NvP6vjMp8QA", trailerUrl: "https://youtu.be/O2pujGARjnw" }
 ];
 
 (function () {
@@ -51,8 +51,17 @@ const VIDEOS = [
             <h2 class="film-title">${safeTitle}${trailerLink}</h2>
         `;
 
-        // Not every video has a maxres thumbnail — fall back to hqdefault.
+        // Not every video has a maxres thumbnail. Two failure modes:
+        //   1. Hard 404              -> "error" event fires
+        //   2. YouTube stub (HTTP 200 but a 120x90 gray placeholder)
+        //      -> "load" fires with naturalWidth <= 120
+        // Fall back to hqdefault.jpg in either case -- it always exists.
         const img = tile.querySelector("img");
+        img.addEventListener("load", () => {
+            if (img.naturalWidth > 0 && img.naturalWidth <= 120) {
+                img.src = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
+            }
+        }, { once: true });
         img.addEventListener("error", () => {
             img.src = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
         }, { once: true });
