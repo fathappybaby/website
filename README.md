@@ -2,6 +2,8 @@
 
 A minimal static website ready to be hosted on [GitHub Pages](https://pages.github.com/).
 
+**Live site:** <https://fathappybaby.github.io/website/>
+
 ## Structure
 
 ```
