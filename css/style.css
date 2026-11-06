@@ -236,6 +236,38 @@ a {
     text-transform: uppercase;
 }
 
+.footer-links {
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 3rem;
+    row-gap: 0.5rem;
+    justify-content: center;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.site-footer .subscribe-form {
+    max-width: 480px;
+    margin: 0 auto 2rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    color: var(--text);
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        column-gap: 2rem;
+    }
+}
+
 /* === Error state === */
 .load-error {
     grid-column: 1 / -1;
@@ -319,5 +351,93 @@ a {
     }
     .subscribe-sub {
         margin-bottom: 1.75rem;
+    }
+}
+
+/* === About page === */
+.about {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem 5rem;
+}
+
+.about-content > * + * {
+    margin-top: 1.25rem;
+}
+
+.about-content > :first-child {
+    margin-top: 0; /* no space above the very first element */
+}
+
+.about-intro {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.about p {
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.about h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-top: 2.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.about ol,
+.about ul {
+    list-style-position: outside;
+    padding-left: 1.5rem;
+    line-height: 1.7;
+}
+
+.about ol li,
+.about ul li {
+    margin-bottom: 0.75rem;
+}
+
+.about ol li::marker {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.about ul li::marker {
+    color: var(--text-muted);
+}
+
+.about a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+}
+
+.about a:hover,
+.about a:focus-visible {
+    color: #f5d872; /* lighter accent on hover */
+}
+
+.about strong {
+    font-weight: 700;
+    color: var(--text);
+}
+
+@media (max-width: 600px) {
+    .about {
+        padding: 2.5rem 1.25rem 3.5rem;
+    }
+    .about h2 {
+        margin-top: 2.25rem;
     }
 }
