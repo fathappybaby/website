@@ -271,3 +271,53 @@ a {
         height: 22px;
     }
 }
+
+/* === Subscribe section === */
+.subscribe {
+    padding: 4.5rem 2rem 5rem;
+    border-top: 1px solid var(--border);
+}
+
+.subscribe-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.subscribe-title {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+
+.subscribe-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 2.25rem;
+    max-width: 48ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subscribe-form {
+    display: flex;
+    justify-content: center;
+    min-height: 64px; /* reserve space so the page doesn't jump when the iframe loads */
+}
+
+.subscribe-form iframe {
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .subscribe {
+        padding: 3rem 1rem 3.5rem;
+    }
+    .subscribe-sub {
+        margin-bottom: 1.75rem;
+    }
+}
